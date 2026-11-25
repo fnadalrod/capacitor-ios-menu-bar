@@ -1,0 +1,64 @@
+{
+  "name": "capacitor-ios-menu-bar",
+  "version": "0.1.0",
+  "description": "Drive the native iPadOS 26 / Mac Catalyst menu bar from JavaScript in a Capacitor app.",
+  "main": "dist/plugin.cjs.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
+  "unpkg": "dist/plugin.js",
+  "files": [
+    "dist/",
+    "ios/Sources",
+    "ios/Tests",
+    "Package.swift",
+    "CapacitorIosMenuBar.podspec"
+  ],
+  "author": "Francisco Nadal",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fnadalrod/capacitor-ios-menu-bar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fnadalrod/capacitor-ios-menu-bar/issues"
+  },
+  "homepage": "https://github.com/fnadalrod/capacitor-ios-menu-bar#readme",
+  "keywords": [
+    "capacitor",
+    "plugin",
+    "native",
+    "menu",
+    "menubar",
+    "ipados",
+    "catalyst",
+    "uikit"
+  ],
+  "scripts": {
+    "build": "npm run clean && tsc && rollup -c rollup.config.mjs",
+    "clean": "rimraf ./dist",
+    "watch": "tsc --watch",
+    "test": "npm run test:web",
+    "test:web": "npm run build && node --test test/*.test.cjs",
+    "test:ios": "scripts/test-ios.sh",
+    "verify": "npm run test:web && npm run test:ios",
+    "verify:ios": "xcodebuild build -scheme CapacitorIosMenuBar -destination generic/platform=iOS",
+    "prepublishOnly": "npm run test:web"
+  },
+  "devDependencies": {
+    "@capacitor/core": "^8.0.0",
+    "rimraf": "^6.0.1",
+    "rollup": "^4.24.0",
+    "typescript": "^5.6.0"
+  },
+  "peerDependencies": {
+    "@capacitor/core": ">=8.0.0"
+  },
+  "capacitor": {
+    "ios": {
+      "src": "ios"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
